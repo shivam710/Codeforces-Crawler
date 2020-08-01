@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fusioncharts/fusioncharts.js' %}"> </script>
+    <script type="text/javascript" src="{% static 'fusioncharts/fusioncharts.charts.js' %}"></script>
+    <script type="text/javascript" src="{% static 'fusioncharts/themes/fusioncharts.theme.fusion.js' %}"></script>
+</head>
+
+{% load socialaccount %}
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <ul class="nav navbar-nav">
+            {# Django Home Link / Admin Link / Register Link#}
+  
+            <li><a class="navbar-brand" href="{% url 'main:home' %}">CF Crawler</a></li>
+            <li><a class="navbar-link" href="{% url 'main:time_table' %}">Coder Calendar</a></li>
+            <li><a class="navbar-link" href="{% url 'main:iitg' %} ">IIT-G</a></li>
+            <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
+            {% if not user.is_authenticated %}
+            {% else %}
+            <li><a class="navbar-link" href="{% url 'main:cfhandle' %} ">Search Handle</a></li>
+            <li><a class="navbar-link" href="{% url 'main:contact' %}">Contact Us</a></li>
+            <li><a class="navbar-link" href="{% url 'main:allchat' %}">Chat</a></li>
+            {% endif %}
+
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if not user.is_authenticated %}
+              <li><a class="navbar-link" href="{% url 'account_signup' %}">Register</a></li>
+              <li><a class="navbar-link" href="{% url 'account_login' %}">Login</a></li>
+            {% else %}
+            <li><a class="navbar-link" href="{% url 'account_logout' %}">Logout</a></li>
+            {% endif %}
+        </ul>
+
+
+    </div>
+</nav>
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

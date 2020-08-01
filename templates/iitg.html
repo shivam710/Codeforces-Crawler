@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+Handle Info
+{% endblock %}
+{% block content %}
+
+<table>
+<tbody>
+<tr>
+    <th style="width:2em;" class="top left">&nbsp;</th>
+    <th style="text-align:left;" class="top">Who</th>
+    <th style="text-align:left;" class="top">Color&nbsp&nbsp</th>
+    <th style="width:2em;" class="top"><span title="Number of participations">#</span></th>
+    <th style="width:2em;" class="top right">=</th>
+</tr>
+
+{% for items in dic %}
+<tr>
+    <td class="dark left">
+            {{items.0}}
+    </td>
+    <td style="text-align:left;padding-left:1em;" class="dark">
+        <a href="{% url 'main:who' items.1 %}">{{items.1}}</a>    </td>
+    <td class="dark">
+        {{items.2}}
+    </td>
+    <td class="dark">
+        {{items.3}}
+    </td>
+    <td class="dark right">
+        {{items.4}}
+    </td>
+</tr>
+
+{% endfor %}
+</tbody>
+</table>
+
+
+
+
+
+
+
+{% endblock %}

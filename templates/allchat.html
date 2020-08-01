@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+{% for user_ in alluser %}
+
+{% if user.id is not user_.id %}
+    <a class="navbar-link" href="{% url 'main:chatroom' user.id user_.id %} ">{{user_}} -- {{user_.id}} </a><br>
+{% endif %}
+
+
+{% endfor %}
+
+{% endblock %}

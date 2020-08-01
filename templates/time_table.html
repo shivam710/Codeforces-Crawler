@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Time Table
+{% endblock %}
+
+{% block content %}
+<h2>Click and get Contest Time Table of respective coding site:</h2>
+<div class="sites">
+    
+    
+        <ul>
+            <br>
+            <li><a href="{% url 'main:code_forces' %}"><h4>Code Forces</h4></a></li>
+            <li><a href="{% url 'main:code_chef' %}"><h4>Code Chef</h4></a></li> 
+                
+        </ul>
+        
+    
+</div>
+{% endblock %}

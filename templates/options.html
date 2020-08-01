@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}
+Handle Info
+{% endblock %}
+{% block content %}
+<div class="col-lg-6 col-md-7 col-sm-8">
+    <div class="banner-content">
+        <h2><strong>{{ handle }}'s</strong> Information</h2><br>
+        <ul>
+<!--            <li><a href="/submission/{{ handle }}">Submission Stats</a></li><br>-->
+            <li><a href="/contest/{{ handle }}">Contest Stats</a></li>
+
+    </div>
+</div>
+{% endblock %}

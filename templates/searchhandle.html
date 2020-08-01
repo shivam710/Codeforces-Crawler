@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Search Handle
+{% endblock %}
+{{error}}dvvvvvvvvv
+{% load crispy_forms_tags %}
+
+{% block content %}
+<h3>Enter CodeForces Handle &nbsp&nbsp&nbsp&nbsp{{error}}</h3>
+<div class="jumbotron " style="background-color: rgb(233, 224, 211);">
+<!--    falak add-->
+    <form method="POST" class="form-group" action="{% url 'main:cfhandle' %}">
+        {% csrf_token %}
+        {{form | crispy}}
+        <button type="submit" class="btn btn-success">Search</button>
+    </form>
+
+</div>
+{% endblock %}

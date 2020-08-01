@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+      <div class="container" style="position: relative; height:700px; width:700px">
+            <canvas id="myChart"></canvas>
+      </div>
+      <div class="container" id="chart2"style="position: relative;" ></div>
+<script>
+    let myChart = document.getElementById('myChart').getContext('2d');
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Arial';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let SubmissionsChart = new Chart(myChart, {
+      type:'pie', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+      data:{
+        labels:['Accepted', 'Hacked', 'Wrong Answer', 'Runtime Error', 'Time Exceeded', 'Compilation Error'],
+        datasets:[{
+          label:'Submissions',
+          data:[
+                '{{ accepted }}',
+                '{{ hacked }}',
+                '{{ wrong_answer }}',
+                '{{ runtime_error }}',
+                '{{ time_exceed }}',
+                '{{ compilation_error }}'
+          ],
+          //backgroundColor:'green',
+          backgroundColor:[
+            'rgba(20,180,0,0.9)',
+            'rgb(60,20,125)',
+            'rgba(100,0,32,0.8)',
+            'rgba(140,70,70,0.5)',
+            'rgba(180, 115, 255, 0.6)',
+            'rgba(220, 0, 64, 0.6)',
+            'rgba(255, 100, 132, 0.6)'
+          ],
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3,
+          hoverBorderColor:'#000'
+        }]
+      },
+      options:{
+        title:{
+          display:true,
+          text:'Submissions Till Date',
+          fontSize:35,
+            fontColor: '#000'
+        },
+        legend:{
+          display:true,
+          position:'right',
+          labels:{
+            fontColor:'#000'
+          }
+        },
+        tooltips:{
+          enabled:true
+        },
+        layout:{
+          padding:{
+            left:50,
+            right:0,
+            bottom:0,
+            top:0
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}

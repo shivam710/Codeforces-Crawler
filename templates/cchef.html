@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Code Chef TT
+{% endblock %}
+
+{% block content %}
+<h2>Contest Details of Current running Contests:</h2>
+
+<div class="contest-view">
+    
+        <ul>
+            {% for info in dic1 %}
+                <br>
+                <li><h4>Name:<a href="https://www.codechef.com/contests"> {{info.1}}</a></h4></li>
+                <h4>Code: {{info.0}}</h4>
+                <h4>Start Date and Time: {{info.2}}</h4>
+                <h4>End Date and Time: {{info.3}}</h4>
+                <br>
+            {% endfor %}
+            
+        </ul>
+    
+</div>
+
+<h2>Contest Details of Upcoming Contests:</h2>
+
+<div class="contest-view">
+    
+        <ul>
+            {% for info in dic2 %}
+                <br>
+                <li><h4>Name:<a href="https://www.codechef.com/contests"> {{info.1}}</a></h4></li>
+                <h4>Code: {{info.0}}</h4>
+                <h4>Start Date and Time: {{info.2}}</h4>
+                <h4>End Date and Time: {{info.3}}</h4>
+                <br>
+            {% endfor %}
+            
+        </ul>
+    
+</div>
+{% endblock %}

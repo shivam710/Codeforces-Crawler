@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<ul id='chat-items'>
+    <input type="hidden" id="myusername" value="{{user.username}}">
+{% for message in messages %}
+
+<li>{{ message.message }} via {{message.user.username}}</li>
+
+{% endfor %}
+</ul>
+
+
+<form method="post" action="#" id="form">
+    {% csrf_token %}
+  <textarea name="answer" rows="1" cols="10" style=" background-color: #CCE5FF " id="id_message"></textarea>
+  <br>
+  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">ans</button>
+</form>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reconnecting-websocket/1.0.0/reconnecting-websocket.js"></script>
+
+<script>
+console.log(window.location)
+var loc = window.location
+var myDate = new Date();
+
+
+var formdata = $('#form')
+var msginput = $('#id_message')
+var chatholder = $('#chat-items')
+
+const  socket = new ReconnectingWebSocket('ws://' + loc.host +  loc.pathname)
+console.log(socket)
+
+
+
+socket.onopen = function(e){
+                    formdata.submit(function(event)
+                    {
+                        console.log("prevent default")
+                        event.preventDefault()
+
+                        var finaldata = {
+                            'message': msginput.val()
+                        }
+<!--                    chatholder.append('<li>' + msginput.val() +  " via " + me  + '</li>')-->
+
+                        socket.send(JSON.stringify(finaldata))   <!-- go to websocket_receive -->
+
+                        formdata[0].reset()  <!-- clear the form method 1 -->
+<!--                    msginput.val('')    &lt;!&ndash; clear the form method 2 &ndash;&gt;-->
+                    })
+
+                    console.log("falak js open", e)}
+
+
+
+socket.onmessage = function(e){
+                    var data = JSON.parse(e.data)
+
+                    if (data.message)
+                        chatholder.append('<li>'  + data.message + " via " +  data.username  + '</li>')
+
+                    console.log("falak js message", e)}
+
+
+socket.onerror = function(e){
+                    console.log("falak js error", e)}
+
+socket.onclose = function(e){
+                    console.log("falak js close", e)}
+
+
+</script>
+{% endblock %}
