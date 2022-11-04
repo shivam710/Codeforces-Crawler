@@ -132,7 +132,7 @@ termcolor==1.1.0
 tornado==6.0.4
 traitlets==4.3.3
 tsv==1.2
-twisted==20.3.0
+twisted==22.10.0
 txaio==20.4.1
 typing-extensions==3.7.4.2
 uritemplate==3.0.1
